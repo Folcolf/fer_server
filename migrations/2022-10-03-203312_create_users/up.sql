@@ -1,0 +1,14 @@
+-- Your SQL goes here
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  role VARCHAR(255) CHECK (role IN ('admin', 'user')) NOT NULL DEFAULT 'user'
+);
+
+CREATE TABLE auths (
+  user_id INTEGER PRIMARY KEY NOT NULL,
+  hash VARCHAR(255) NOT NULL,
+  error INTEGER NOT NULL DEFAULT 0,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
